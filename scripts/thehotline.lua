@@ -137,7 +137,9 @@ if Player.Character:FindFirstChild("Bullet") then
 			
 	game:GetService("RunService").Stepped:Connect(function()
 		if ATTACK == true then
-			BP.Position = Mouse.Hit.p
+    		if Mouse.Target ~= nil then
+        		BP.Position = Mouse.Hit.p
+		end
 		elseif ATTACK == false then
 		  pcall(function() BP.Position = game.Players.LocalPlayer.Character.Rig:FindFirstChild("Torso").Position + Vector3.new(0,-25,0) end)
 		end
