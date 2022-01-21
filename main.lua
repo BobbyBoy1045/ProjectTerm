@@ -99,9 +99,9 @@ Tab2:Button("Reanimate", function()
 	function NetlessF()
 		for _, v in pairs(Character:GetChildren()) do
 			if v:IsA("BasePart") or v:IsA("MeshPart") and v.Name ~= "UpperTorso" and v.Name ~= "Torso" then
-				v.Velocity = _G.Velocity
+				v.Velocity = _G.Velocity or Vector3.new(35,0,0)
 			elseif v:IsA("Accessory") then
-				v.Handle.Velocity = _G.Velocity
+				v.Handle.Velocity = _G.Velocity or Vector3.new(35,0,0)
 			end
 		end
 		if Humanoid.RigType == Enum.HumanoidRigType.R15 then
@@ -110,7 +110,7 @@ Tab2:Button("Reanimate", function()
 		if _G.Settings.Fling == true then
 			Torso.Velocity = Vector3.new(3000,3000,3000)
 		else
-			Torso.Velocity = _G.Velocity
+			Torso.Velocity = _G.Velocity or Vector3.new(35,0,0)
 		end
 		if Humanoid.RigType == Enum.HumanoidRigType.R15 then
 				Torso.CFrame = CloneTorso.CFrame + Vector3.new(0,0.19,0)
