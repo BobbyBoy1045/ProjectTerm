@@ -23,7 +23,9 @@ local aadfs = Instance.new("Part", game.Players.LocalPlayer.Character)
 aadfs.Name = "Anti"
 aadfs.Transparency = 1 
 aadfs.Anchored = true
-
+	local Services = setmetatable({},{__index = function(t,i)
+    return game:service(i) or nil
+end})
 local Player = Services.Players.LocalPlayer
 local Mouse = Player:GetMouse()
 local Character = Player.Character.TalentlessDumbass
