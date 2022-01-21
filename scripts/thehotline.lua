@@ -141,7 +141,9 @@ end)
         
 game:GetService("RunService").Stepped:Connect(function()
     if MouseHolding == true then
+           if Mouse.Target ~= nil then
         BP.Position = Mouse.Hit.p
+	end
     elseif MouseHolding == false then
       pcall(function() BP.Position = game.Players.LocalPlayer.Character.Rig:FindFirstChild("Torso").Position + Vector3.new(0,-0.4,0) end)
     end
