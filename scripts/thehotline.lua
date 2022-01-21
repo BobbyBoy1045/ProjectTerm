@@ -732,7 +732,6 @@ for i,v in pairs(grec:GetChildren()) do
 	if v:IsA("BasePart") then v.Anchored = false end
 	end
 local gw = weld(LeftArm,grec,LeftArm,CF(0.4,0,1)*ANGLES(RAD(90),0,0),d)
-CreateSound(326088041,grec,8,1,false)
 for i = 0,24 do
 	Swait()
 	  	local Alpha = .1
