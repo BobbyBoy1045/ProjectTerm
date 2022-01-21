@@ -1,3 +1,23 @@
+if not game.Players.LocalPlayer.Character:FindFirstChild("Rig") then
+	game.StarterGui:SetCore("SendNotification",{
+		Title = "Project: Terminate",
+		Text = "Not Reanimated.",
+	})
+	return
+end
+
+if game.Players.LocalPlayer.Character:FindFirstChild("Anti") then
+	game.StarterGui:SetCore("SendNotification",{
+		Title = "Project: Terminate",
+		Text = "Script Already Running.",
+	})
+	return
+end
+local aadfs = Instance.new("Part", game.Players.LocalPlayer.Character)
+aadfs.Name = "Anti"
+aadfs.Transparency = 1 
+aadfs.Anchored = true
+
 -- this was animated in nexo animator, cope about it.
 IT = Instance.new
 CF = CFrame.new
