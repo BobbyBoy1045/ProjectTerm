@@ -410,7 +410,7 @@ function Library:Create(name,logotext)
 			ToggleLabel.Position = UDim2.new(0.0253048409, 0, 0.0294126309, 0)
 			ToggleLabel.Size = UDim2.new(0, 290, 0, 28)
 			ToggleLabel.Font = Enum.Font.Gotham
-			ToggleLabel.Text = "Toggle"
+			ToggleLabel.Text = text
 			ToggleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 			ToggleLabel.TextSize = 14.000
 			ToggleLabel.TextTransparency = 0.200
