@@ -244,11 +244,7 @@ function Library:Create(name,logotext)
 		dragify(script.Parent)
 	end
 	coroutine.wrap(GBXSQW_fake_script)()
-	for i = 0,60 do
-		for _,v in pairs(Containers:GetChildren()) do
-		v.Visible = false
-		end
-	end
+
 	local Library2 = {}
 
 	function Library2:MakeTab(text)
