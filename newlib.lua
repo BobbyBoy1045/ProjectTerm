@@ -440,6 +440,11 @@ function Library:Create(name,logotext)
 					ToggleCallback.Image = "rbxassetid://6031068433"
 				end
 			end)
+			for i = 0,60 do
+				for _,v in pairs(Containers:GetChildren()) do
+				v.Visible = false
+			end
+			end
 		end
 		
 		return Library2
