@@ -300,7 +300,7 @@ function Library:Create(name,logotext)
 			local LabelLabel = Instance.new("TextLabel")
 			local LabelImage = Instance.new("ImageLabel")
 
-			Label.Name = text
+			Label.Name = "Label"
 			Label.Parent = Tab
 			Label.BackgroundColor3 = Color3.fromRGB(102, 98, 122)
 			Label.Size = UDim2.new(0, 328, 0, 29)
@@ -318,6 +318,7 @@ function Library:Create(name,logotext)
 			LabelLabel.Font = Enum.Font.Gotham
 			LabelLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 			LabelLabel.TextSize = 14.000
+			LabelLabel.Text = text
 			LabelLabel.TextTransparency = 0.200
 			LabelLabel.TextXAlignment = Enum.TextXAlignment.Left
 
