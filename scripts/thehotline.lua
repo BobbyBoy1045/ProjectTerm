@@ -119,36 +119,42 @@ tossremainder = false
 lastframe = tick()
 script.ArtificialHB:Fire()
 if Player.Character:FindFirstChild("Bullet") then
-	local Character = game.Players.LocalPlayer.Character
-	local Bullet = Character['Bullet']
-	Bullet:ClearAllChildren()
-	if Character:FindFirstChild("RightFoot") then
-	Character:FindFirstChild("RightFoot"):Destroy()
+local Character = game.Players.LocalPlayer.Character
+local Bullet = Character['Bullet']
+Bullet:ClearAllChildren()
+local BP = Instance.new("BodyPosition", Bullet)
+local BT = Instance.new("BodyThrust", Bullet)
+BP.MaxForce = Vector3.new(math.huge,math.huge,math.huge)
+BP.D = 125
+BP.P = 12500
+BT.Location = Vector3.new(10,5,-10)
+local Mouse = game.Players.LocalPlayer:GetMouse()
+local MouseHolding = false
+Mouse.Button1Down:Connect(function()
+    MouseHolding = true --BP.Position = Mouse.Hit.p
+    BT.Force = Vector3.new(3000,3000,3000)
+end)
+        
+Mouse.Button1Up:Connect(function()
+    MouseHolding = false --BP.Position = Character.Torso.Position
+end)
+        
+game:GetService("RunService").Stepped:Connect(function()
+    if MouseHolding == true then
+        BP.Position = Mouse.Hit.p
+    elseif MouseHolding == false then
+      pcall(function() BP.Position = game.Players.LocalPlayer.Character.Rig:FindFirstChild("Torso").Position + Vector3.new(0,-0.4,0) end)
+    end
+    if MouseHolding == false then
+    	BT.Force = Vector3.new(1,0,0)
 	end
-	local BP = Instance.new("BodyPosition", Bullet)
-	local BT = Instance.new("BodyThrust", Bullet)
-	BP.MaxForce = Vector3.new(math.huge,math.huge,math.huge)
-	BP.D = 125
-	BP.P = 12500
-	BT.Location = Vector3.new(10,5,-10)
-	BT.Force = Vector3.new(3000,3000,3000)
-	local Mouse = game.Players.LocalPlayer:GetMouse()
+end)
 
-			
-	game:GetService("RunService").Stepped:Connect(function()
-		if ATTACK == true then
-    		if Mouse.Target ~= nil then
-        		BP.Position = Mouse.Hit.p
-		end
-		elseif ATTACK == false then
-		  pcall(function() BP.Position = game.Players.LocalPlayer.Character.Rig:FindFirstChild("Torso").Position + Vector3.new(0,-25,0) end)
-		end
-	end)
+        
+Bullet.Transparency = 0
+local Outline = Instance.new("SelectionBox", Bullet)
+Outline.Adornee = Bullet
 
-			
-	Bullet.Transparency = 0
-	local Outline = Instance.new("SelectionBox", Bullet)
-	Outline.Adornee = Bullet
 	
 end
 game:GetService("RunService").Heartbeat:connect(function(s, p)
