@@ -402,7 +402,7 @@ GRIP.Part1 = BAZOOKA
 GRIP.C0 = CF(0,-1,-0.5)*ANGLES(RAD(-90),0,0)*CF(0,0,1.85)
 local G_C0 = GRIP.C0
 GRIP.Parent = RIGHTARM
-
+-- i decided to keep my old align here because yes, its simillar anyway
 function Attach(P0,P1,Position,Rotation)
 local A1,A2,AO,AP = Instance.new("Attachment", P0), Instance.new("Attachment", P1),
 Instance.new("AlignOrientation", P0), Instance.new("AlignPosition", P0)
@@ -410,10 +410,10 @@ AO.Attachment0 = A1
 AP.Attachment0 = A1
 AO.Attachment1 = A2
 AP.Attachment1 = A2
-AO.MaxTorque = 5e9
-AP.MaxForce = 5e9
-AO.Responsiveness = 5e9
-AP.Responsiveness = 5e9
+AO.MaxTorque = 7e9
+AP.MaxForce = 7e9
+AO.Responsiveness = 7e9
+AP.Responsiveness = 7e9
 A1.Position = Vector3.new(2, 1.8, 0)
 A1.Orientation = Vector3.new(-45, 90, 0)
 end
