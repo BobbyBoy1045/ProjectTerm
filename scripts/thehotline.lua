@@ -5,7 +5,7 @@ if not game.Players.LocalPlayer.Character:FindFirstChild("Rig") then
 	})
 	return
 end
-if not game.Players.LocalPlayer.Character:FindFirstChild("Dark Matter Scythe") then
+if not game.Players.LocalPlayer.Character:FindFirstChild("AR-L 10 SWAT [Front]") then
 	game.StarterGui:SetCore("SendNotification",{
 		Title = "Project: Terminate",
 		Text = "Missing Hat.",
@@ -765,7 +765,6 @@ local mmm = IT("BodyVelocity")
 			h = true
 			grec:BreakJoints()
 			ApplyAoE(grec.Position,33,0,0,100,true)
-			CreateSound(142070127,grec,10,1,false)
 			for i = 1,4 do
 				WACKYEFFECT2({Time = 80, EffectType = "Sphere", Size = VT(40,40,40), Size2 = VT(55,55,55), Transparency = 0, Transparency2 = 1, CFrame = grec.CFrame, MoveToPos = grec.Position + VT(MRANDOM(-25,25),0,MRANDOM(-25,25)), RotationX = 0, RotationY = 0, RotationZ = 0, Material = "Neon", Color = Color3.fromRGB(255,MRANDOM(30,150),0),SoundID = nil, SoundPitch = nil, SoundVolume = nil, UseBoomerangMath = false, Boomerang = 0, SizeBoomerang = 0})
 			end
