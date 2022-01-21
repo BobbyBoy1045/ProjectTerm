@@ -1,12 +1,6 @@
-if not _G.Settings then _G.Settings = {
-	Velocity = Vector3.new(30,0,0),
-	Bullet = false,
-	Fling = false,
-}
-end
+
 
 _G.Settings = {
-	Velocity = Vector3.new(30,0,0),
 	Bullet = false,
 	Fling = false,
 }
@@ -16,7 +10,7 @@ local Tab1 = Main:MakeTab("Home")
 local Tab2 = Main:MakeTab("Reanimation")
 local Tab3 = Main:MakeTab("Scripts")
 local Tab4 = Main:MakeTab("Hat Scripts")
-Tab1:Label("Current Version: 1.3")
+Tab1:Label("Current Version: 1.3a")
 Tab1:Button("Copy Discord Invite!", function()
 	setclipboard("https://discord.gg/mnC3mjJhEH")
 end)
@@ -260,6 +254,9 @@ Tab4:Button("Unithereal Glitcher Edit", function()
 end)
 Tab4:Button("Sword Hoverboard", function()
 	ezloadstring("hoverboard")
+end)
+Tab4:Button("Yellow Lightning Blade", function()
+	ezloadstring("lightningblade")
 end)
 for i = 0,60 do
 	for _,v in pairs(game.CoreGui.ProjectTerminate.Main.Containers:GetChildren()) do
