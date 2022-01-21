@@ -25,7 +25,7 @@ function Library:Create(name,logotext)
 	local Containers = Instance.new("Folder")
 	
 	ProjectTerminate.Name = "ProjectTerminate"
-	ProjectTerminate.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+	ProjectTerminate.Parent = game.CoreGui
 
 	Main.Name = "Main"
 	Main.Parent = ProjectTerminate
