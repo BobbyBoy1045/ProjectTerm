@@ -1,6 +1,9 @@
  local Library = {}
 
 function Library:Create(name,logotext)
+	if game.CoreGui:FindFirstChild("ProjectTerminate") then
+	game.CoreGui:FindFirstChild("ProjectTerminate"):Destroy()	
+	end
 	local ProjectTerminate = Instance.new("ScreenGui")
 	local Main = Instance.new("Frame")
 	local SideBar = Instance.new("Frame")
