@@ -1,3 +1,28 @@
+if not game.Players.LocalPlayer.Character:FindFirstChild("Rig") then
+	game.StarterGui:SetCore("SendNotification",{
+		Title = "Project: Terminate",
+		Text = "Not Reanimated.",
+	})
+	return
+end
+if not game.Players.LocalPlayer.Character:FindFirstChild("PirateCaptain_HatAccessory") then
+	game.StarterGui:SetCore("SendNotification",{
+		Title = "Project: Terminate",
+		Text = "Missing Hat.",
+	})
+	return
+end
+if game.Players.LocalPlayer.Character:FindFirstChild("Anti") then
+	game.StarterGui:SetCore("SendNotification",{
+		Title = "Project: Terminate",
+		Text = "Script Already Running.",
+	})
+	return
+end
+local aadfs = Instance.new("Part", game.Players.LocalPlayer.Character)
+aadfs.Name = "Anti"
+aadfs.Transparency = 1 
+aadfs.Anchored = true
 
 _G.AttackWait1 = 0.5
 _G.AttackWait2 = 0.5
