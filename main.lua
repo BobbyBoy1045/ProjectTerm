@@ -1,8 +1,15 @@
 
+function set()
+	game.StarterGui:SetCore("SendNotification",{
+		Title = "Project: Terminate",
+		Text = "Copied to clipboard.",
+	})
+end
 
 _G.Settings = {
 	Bullet = false,
 	Fling = false,
+	CFrameMethod = false,
 }
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Gelatek/ProjectTerm/main/newlib.lua"))() 
 local Main = Library:Create("Project: Terminate","FE")
@@ -10,18 +17,29 @@ local Tab1 = Main:MakeTab("Home")
 local Tab2 = Main:MakeTab("Reanimation")
 local Tab3 = Main:MakeTab("Scripts")
 local Tab4 = Main:MakeTab("Hat Scripts")
-Tab1:Label("Current Version: 1.3a")
+local Tab5 = Main:MakeTab("Hat ID's")
+Tab1:Label("Current Version: 1.4")
+Tab1:Label("Created By: Gelatek")
+Tab1:Label("Special Thanks: Pare, TypicalUsername")
 Tab1:Button("Copy Discord Invite!", function()
 	setclipboard("https://discord.gg/mnC3mjJhEH")
 end)
-
+Tab2:Label("Please don't touch toggles after reanimate.")
+Tab2:Button("(R6 ONLY) Copy Bullet Hats", function()
+	setclipboard("63690008")
+	set()
+end)
+Tab2:Line()
 Tab2:Toggle("Enable Fling", function(Bool)
 	_G.Settings.Fling = Bool
 end)
-
 Tab2:Toggle("Enable Bullet", function(Bool)
 	_G.Settings.Bullet = Bool
 end)
+Tab2:Toggle("CFrame Method (R6 Only)", function(Bool)
+	_G.Settings.CFrameMethod = Bool
+end)
+
 
 Tab2:Line()
 Tab2:Button("Reanimate", function()
@@ -66,13 +84,14 @@ Tab2:Button("Reanimate", function()
 	local Dead = false
 	local Noclip;
 	local Netless;
+	local Test;
 	-- Startup
 	Character.Archivable = true
 	local Reanimate = game:GetObjects('rbxassetid://8440552086')[1]
 	Reanimate.Parent = Character
 	Reanimate.Name = "Rig" -- name by DankPog
 	local CloneHumanoid = Reanimate:FindFirstChild("Humanoid")
-	local CloneTorso = Reanimate:FindFirstChild("Torso") or Reanimate:FindFirstChild("UpperTorso")
+	local CloneTorso = Reanimate:FindFirstChild("Torso")
 	for _, v in pairs(Reanimate:GetDescendants()) do
 		if v:IsA("BasePart") or v:IsA("Decal") then
 			v.Transparency = 1
@@ -133,13 +152,6 @@ Tab2:Button("Reanimate", function()
 		end)
 	end)
 
-	Humanoid.Died:Connect(function()
-	Dead = true
-	Noclip:Disconnect()
-	Netless:Disconnect()
-	Reanimate:BreakJoints()
-	workspace.Camera.CameraSubject = Humanoid
-	end)
 
 	if Humanoid.RigType == Enum.HumanoidRigType.R6 then
 	Reanimate.HumanoidRootPart.CFrame = Torso.CFrame
@@ -148,11 +160,30 @@ Tab2:Button("Reanimate", function()
 	Character.Torso["Left Hip"]:Destroy()
 	Character.Torso["Right Hip"]:Destroy()
 	Character.HumanoidRootPart:Destroy()
+	if _G.Settings.CFrameMethod == false then
 	Align(Character.Torso,Reanimate.Torso)
 	Align(Character['Right Arm'],Reanimate['Right Arm'])
 	Align(Character['Left Arm'],Reanimate['Left Arm'])
 	Align(Character['Right Leg'],Reanimate['Right Leg'])
 	Align(Character['Left Leg'],Reanimate['Left Leg'])
+	elseif _G.Settings.CFrameMethod == true then
+	local A,A1 = Character:FindFirstChild("Right Arm"),Reanimate:FindFirstChild("Right Arm")
+	local B,B1 = Character:FindFirstChild("Left Arm"),Reanimate:FindFirstChild("Left Arm")
+	local C,C1 = Character:FindFirstChild("Right Leg"),Reanimate:FindFirstChild("Right Leg")
+	local D,D1 = Character:FindFirstChild("Left Leg"),Reanimate:FindFirstChild("Left Leg")
+	function CFM()--RunService.RenderStepped:Connect(function()
+		B.CFrame = B1.CFrame
+		C.CFrame = C1.CFrame
+		D.CFrame = D1.CFrame
+		if _G.Settings.Bullet == false then
+			A.CFrame = A1.CFrame
+		end
+	end
+		if _G.Settings.Bullet == true then
+			Align(Character['Right Arm'],Reanimate['Right Arm'])
+		end
+		Test = RunService.RenderStepped:Connect(CFM)
+	end
 
 	if _G.Settings.Bullet == true then
 		Humanoid:ChangeState("Physics")
@@ -197,6 +228,15 @@ Tab2:Button("Reanimate", function()
 		Humanoid:ChangeState("Physics")
 		end
 	end
+	Humanoid.Died:Connect(function()
+	Dead = true
+	Noclip:Disconnect()
+	Netless:Disconnect()
+	Test:Disconnect()
+	Reanimate:BreakJoints()
+	workspace.Camera.CameraSubject = Humanoid
+	end)
+	
 	workspace.Camera.CameraSubject = CloneHumanoid
 	game.StarterGui:SetCore("SendNotification",{
 		Title = "Gelatek Reanimate",
@@ -258,6 +298,64 @@ end)
 Tab4:Button("Yellow Lightning Blade", function()
 	ezloadstring("lightningblade")
 end)
+
+Tab4:Button("Carnage", function()
+	ezloadstring("carnage")
+end)
+Tab4:Button("Regunner", function()
+	ezloadstring("regunner")
+end)
+Tab4:Button("Mysterious Block", function()
+	ezloadstring("mysteriousblock")
+end)
+
+
+
+Tab5:Button("Copy Void Scythe Hats", function()
+	setclipboard("5414429551")
+	set()
+end)
+Tab5:Button("Copy Chips Hats", function()
+	setclipboard("4964938812")
+	set()
+end)
+Tab5:Button("Copy Hoverboard Hats", function()
+	setclipboard("4458601937")
+	set()
+end)
+Tab5:Button("Copy Neptunian V Hats", function()
+	setclipboard("4458601937")
+	set()
+end)
+Tab5:Button("Copy Yellow Lightning Blade Hats", function()
+	setclipboard("4458601937")
+	set()
+end)
+Tab5:Button("Copy Unithereal Glitcher Edit Hats", function()
+	setclipboard("4315489767,4794315940,4506945409,4458601937,4820152700,4524991457,4773932088")
+	set()
+end)
+Tab5:Button("Copy Banzai Bazooka Hats", function()
+	setclipboard("4466171123")
+	set()
+end)
+Tab5:Button("Copy The Hotline Hats", function()
+	setclipboard("6497604093")
+	set()
+end)
+Tab5:Button("Copy Re-Gunner Hats", function()
+	setclipboard("6497604093")
+	set()
+end)
+Tab5:Button("Copy Mysterious Block Hats", function()
+	setclipboard("2493718915")
+	set()
+end)
+Tab5:Button("Copy Carnage Hats", function()
+	setclipboard("5410674378")
+	set()
+end)
+
 for i = 0,60 do
 	for _,v in pairs(game.CoreGui.ProjectTerminate.Main.Containers:GetChildren()) do
 		v.Visible = false
