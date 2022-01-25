@@ -19,6 +19,7 @@ if game.Players.LocalPlayer.Character:FindFirstChild("Anti") then
 	})
 	return
 end
+
 local aadfs = Instance.new("Part", game.Players.LocalPlayer.Character)
 aadfs.Name = "Anti"
 aadfs.Transparency = 1 
@@ -48,7 +49,31 @@ local UserInputService = game:GetService("UserInputService")
 	
 pcall(function() Player.Character['PirateCaptain_HatAccessory'].Handle.SpecialMesh:Destroy() end)
 
+local Hat = Player.Character:FindFirstChild("PirateCaptain_HatAccessory")
+local Clone = Hat:Clone()
+Clone.Parent = Character
+Clone.Handle.Transparency = 1
+local function Align(P0,P1,Position,Orientation)
+    local AlignPosition = Instance.new("AlignPosition", P0)
+    local AlignOrientation = Instance.new("AlignOrientation", P0)
+    local Attachment1 = Instance.new("Attachment", P0)
+    local Attachment2 = Instance.new("Attachment", P1)
+    -- Main Attach Thingy:
+    AlignPosition.Attachment0,AlignPosition.Attachment1 = Attachment1,Attachment2 -- Shortcut
+    AlignOrientation.Attachment0,AlignOrientation.Attachment1 = Attachment1,Attachment2 -- Shortcut
+    -- Properties:
 
+    AlignPosition.MaxForce = 9e9
+    AlignOrientation.MaxTorque = 9e9
+    AlignPosition.Responsiveness = 200
+    AlignOrientation.Responsiveness = 200
+
+    -- Rotate/Position
+    Attachment1.Position = Position or Vector3.new(0,0,0)
+    Attachment1.Orientation = Orientation or Vector3.new(0,0,0)
+end
+Hat.Handle.AccessoryWeld:Destroy()
+Align(Hat.Handle,Clone.Handle)
 
 if Player.Character:FindFirstChild("Bullet") then
 local Character = game.Players.LocalPlayer.Character
@@ -142,12 +167,12 @@ LH.C0 = CF(0,0,0)*ANGLES(RAD(0),RAD(0),RAD(0))
 RS.C0 = CF(0,0,0)*ANGLES(RAD(0),RAD(0),RAD(0))
 LS.C0 = CF(0,0,0)*ANGLES(RAD(0),RAD(0),RAD(0))
 function HatSetup(Hat,Part,C1,C0,Number)
-Player.Character[Hat].Handle.AccessoryWeld.Part1=Character[Part]
-Player.Character[Hat].Handle.AccessoryWeld.C1=C1 or CFrame.new()
-Player.Character[Hat].Handle.AccessoryWeld.C0=C0 or CFrame.new()--3bbb322dad5929d0d4f25adcebf30aa5
+Character[Hat].Handle.AccessoryWeld.Part1=Character[Part]
+Character[Hat].Handle.AccessoryWeld.C1=C1 or CFrame.new()
+Character[Hat].Handle.AccessoryWeld.C0=C0 or CFrame.new()--3bbb322dad5929d0d4f25adcebf30aa5
 end
 
-HatSetup('PirateCaptain_HatAccessory','Right Arm',CFrame.new(),Player.Character['PirateCaptain_HatAccessory'].Handle.AccessoryWeld.C0:Lerp(CF(0+0*math.cos(sine/6),2+0*math.cos(sine/6),0+0*math.cos(sine/6))*ANGLES(RAD(0+0*math.cos(sine/6)),RAD(0+360*math.cos(sine/6)),RAD(0+0*math.cos(sine/6))),1),true)
+HatSetup('PirateCaptain_HatAccessory','Right Arm',CFrame.new(),Character['PirateCaptain_HatAccessory'].Handle.AccessoryWeld.C0:Lerp(CF(0+0*math.cos(sine/6),2+0*math.cos(sine/6),0+0*math.cos(sine/6))*ANGLES(RAD(0+0*math.cos(sine/6)),RAD(0+360*math.cos(sine/6)),RAD(0+0*math.cos(sine/6))),1),true)
 spawn(function()
 	while game:GetService("RunService").RenderStepped:Wait() do
 		Sine = Sine + Speed
@@ -160,7 +185,7 @@ spawn(function()
 			LS.C0 = LS.C0:Lerp(CF(-1+0*math.cos(sine/13),0.5+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(-2+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(-19+0*math.cos(sine/13))),.3)
 			RH.C0 = RH.C0:Lerp(CF(1+0*math.cos(sine/13),-1+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(50+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(-53+0*math.cos(sine/13))),.3)
 			LH.C0 = LH.C0:Lerp(CF(-1+0*math.cos(sine/13),-1+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(94+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(39+0*math.cos(sine/13))),.3)
-			Player.Character['PirateCaptain_HatAccessory'].Handle.AccessoryWeld.C0 = Player.Character['PirateCaptain_HatAccessory'].Handle.AccessoryWeld.C0:Lerp(CF(0+0*math.cos(sine/6),2+0*math.cos(sine/6),0+0*math.cos(sine/6))*ANGLES(RAD(0+0*math.cos(sine/6)),RAD(0+360*math.sin(sine/6)),RAD(0+0*math.cos(sine/6))),.3)
+			Character['PirateCaptain_HatAccessory'].Handle.AccessoryWeld.C0 = Character['PirateCaptain_HatAccessory'].Handle.AccessoryWeld.C0:Lerp(CF(0+0*math.cos(sine/6),2+0*math.cos(sine/6),0+0*math.cos(sine/6))*ANGLES(RAD(0+0*math.cos(sine/6)),RAD(0+360*math.sin(sine/6)),RAD(0+0*math.cos(sine/6))),.3)
 		elseif Position == "Walk" then
 			NECK.C0 = NECK.C0:Lerp(CF(0+0*math.cos(sine/13),1+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),.3)
 			RJ.C0 = RJ.C0:Lerp(CF(0+0*math.cos(sine/13),0+0.1*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(-13+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),.3)
@@ -168,7 +193,7 @@ spawn(function()
 			LS.C0 = LS.C0:Lerp(CF(-1+0*math.cos(sine/13),0.5+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(-2+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(-19+0*math.cos(sine/13))),.3)
 			RH.C0 = RH.C0:Lerp(CF(1+0*math.cos(sine/13),-1+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(50+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(-53+0*math.cos(sine/13))),.3)
 			LH.C0 = LH.C0:Lerp(CF(-1+0*math.cos(sine/13),-1+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(94+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(39+0*math.cos(sine/13))),.3)
-			Player.Character['PirateCaptain_HatAccessory'].Handle.AccessoryWeld.C0 = Player.Character['PirateCaptain_HatAccessory'].Handle.AccessoryWeld.C0:Lerp(CF(0+0*math.cos(sine/6),2+0*math.cos(sine/6),0+0*math.cos(sine/6))*ANGLES(RAD(0+0*math.cos(sine/6)),RAD(0+360*math.sin(sine/6)),RAD(0+0*math.cos(sine/6))),.3)				
+			Character['PirateCaptain_HatAccessory'].Handle.AccessoryWeld.C0 = Character['PirateCaptain_HatAccessory'].Handle.AccessoryWeld.C0:Lerp(CF(0+0*math.cos(sine/6),2+0*math.cos(sine/6),0+0*math.cos(sine/6))*ANGLES(RAD(0+0*math.cos(sine/6)),RAD(0+360*math.sin(sine/6)),RAD(0+0*math.cos(sine/6))),.3)				
 
 		elseif Position == "Jump" then
 			NECK.C0 = NECK.C0:Lerp(CF(0+0*math.cos(sine/13),1+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),.3)
@@ -177,7 +202,7 @@ spawn(function()
 			LS.C0 = LS.C0:Lerp(CF(-1+0*math.cos(sine/13),0.5+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(-2+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(-19+0*math.cos(sine/13))),.3)
 			RH.C0 = RH.C0:Lerp(CF(1+0*math.cos(sine/13),-1+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(50+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(-53+0*math.cos(sine/13))),.3)
 			LH.C0 = LH.C0:Lerp(CF(-1+0*math.cos(sine/13),-1+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(94+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(39+0*math.cos(sine/13))),.3)
-			Player.Character['PirateCaptain_HatAccessory'].Handle.AccessoryWeld.C0 = Player.Character['PirateCaptain_HatAccessory'].Handle.AccessoryWeld.C0:Lerp(CF(0+0*math.cos(sine/6),2+0*math.cos(sine/6),0+0*math.cos(sine/6))*ANGLES(RAD(0+0*math.cos(sine/6)),RAD(0+360*math.sin(sine/6)),RAD(0+0*math.cos(sine/6))),.3)				
+			Character['PirateCaptain_HatAccessory'].Handle.AccessoryWeld.C0 = Character['PirateCaptain_HatAccessory'].Handle.AccessoryWeld.C0:Lerp(CF(0+0*math.cos(sine/6),2+0*math.cos(sine/6),0+0*math.cos(sine/6))*ANGLES(RAD(0+0*math.cos(sine/6)),RAD(0+360*math.sin(sine/6)),RAD(0+0*math.cos(sine/6))),.3)				
 		elseif Position == "Fall" then
 			NECK.C0 = NECK.C0:Lerp(CF(0+0*math.cos(sine/13),1+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),.3)
 			RJ.C0 = RJ.C0:Lerp(CF(0+0*math.cos(sine/13),0+0.1*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(-19+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),.3)
@@ -185,7 +210,7 @@ spawn(function()
 			LS.C0 = LS.C0:Lerp(CF(-1+0*math.cos(sine/13),0.5+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(-2+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(-19+0*math.cos(sine/13))),.3)
 			RH.C0 = RH.C0:Lerp(CF(1+0*math.cos(sine/13),-1+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(50+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(-53+0*math.cos(sine/13))),.3)
 			LH.C0 = LH.C0:Lerp(CF(-1+0*math.cos(sine/13),-1+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(94+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(39+0*math.cos(sine/13))),.3)	
-			Player.Character['PirateCaptain_HatAccessory'].Handle.AccessoryWeld.C0 = Player.Character['PirateCaptain_HatAccessory'].Handle.AccessoryWeld.C0:Lerp(CF(0+0*math.cos(sine/6),2+0*math.cos(sine/6),0+0*math.cos(sine/6))*ANGLES(RAD(0+0*math.cos(sine/6)),RAD(0+360*math.sin(sine/6)),RAD(0+0*math.cos(sine/6))),.3)				
+			Character['PirateCaptain_HatAccessory'].Handle.AccessoryWeld.C0 = Character['PirateCaptain_HatAccessory'].Handle.AccessoryWeld.C0:Lerp(CF(0+0*math.cos(sine/6),2+0*math.cos(sine/6),0+0*math.cos(sine/6))*ANGLES(RAD(0+0*math.cos(sine/6)),RAD(0+360*math.sin(sine/6)),RAD(0+0*math.cos(sine/6))),.3)				
 		elseif Position == "Attack1" then
 			NECK.C0 = NECK.C0:Lerp(CF(0+0*math.cos(sine/13),1+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),.3)
 			RJ.C0 = RJ.C0:Lerp(CF(0+0*math.cos(sine/13),0+0.1*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),.3)
@@ -193,7 +218,7 @@ spawn(function()
 			LS.C0 = LS.C0:Lerp(CF(-1+0*math.cos(sine/13),0.5+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(-2+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(-19+0*math.cos(sine/13))),.3)
 			RH.C0 = RH.C0:Lerp(CF(1+0*math.cos(sine/13),-1+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(50+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(-53+0*math.cos(sine/13))),.3)
 			LH.C0 = LH.C0:Lerp(CF(-1+0*math.cos(sine/13),-1+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(94+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(39+0*math.cos(sine/13))),.3)
-			Player.Character['PirateCaptain_HatAccessory'].Handle.AccessoryWeld.C0 = Player.Character['PirateCaptain_HatAccessory'].Handle.AccessoryWeld.C0:Lerp(CF(0+0*math.cos(sine/6),2+0*math.cos(sine/6),0+0*math.cos(sine/6))*ANGLES(RAD(0+0*math.cos(sine/6)),RAD(0+360*math.sin(sine/6)),RAD(0+0*math.cos(sine/6))),.3)					
+			Character['PirateCaptain_HatAccessory'].Handle.AccessoryWeld.C0 = Character['PirateCaptain_HatAccessory'].Handle.AccessoryWeld.C0:Lerp(CF(0+0*math.cos(sine/6),2+0*math.cos(sine/6),0+0*math.cos(sine/6))*ANGLES(RAD(0+0*math.cos(sine/6)),RAD(0+360*math.sin(sine/6)),RAD(0+0*math.cos(sine/6))),.3)					
 		elseif Position == "Attack2" then
 			NECK.C0 = NECK.C0:Lerp(CF(0+0*math.cos(sine/13),1+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),.3)
 			RJ.C0 = RJ.C0:Lerp(CF(0+0*math.cos(sine/13),0+0.1*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(-4+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),.3)
@@ -201,7 +226,7 @@ spawn(function()
 			LS.C0 = LS.C0:Lerp(CF(-1+0*math.cos(sine/13),0.5+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(-2+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(-19+0*math.cos(sine/13))),.3)
 			RH.C0 = RH.C0:Lerp(CF(1+0*math.cos(sine/13),-1+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(50+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(-53+0*math.cos(sine/13))),.3)
 			LH.C0 = LH.C0:Lerp(CF(-1+0*math.cos(sine/13),-1+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(94+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(39+0*math.cos(sine/13))),.3)
-			Player.Character['PirateCaptain_HatAccessory'].Handle.AccessoryWeld.C0 = Player.Character['PirateCaptain_HatAccessory'].Handle.AccessoryWeld.C0:Lerp(CF(-1+0*math.cos(sine/6),7+0*math.cos(sine/6),-8+0*math.cos(sine/6))*ANGLES(RAD(0+0*math.cos(sine/6)),RAD(0+0*math.sin(sine/6)),RAD(0+0*math.cos(sine/6))),.3)
+			Character['PirateCaptain_HatAccessory'].Handle.AccessoryWeld.C0 = Character['PirateCaptain_HatAccessory'].Handle.AccessoryWeld.C0:Lerp(CF(-1+0*math.cos(sine/6),7+0*math.cos(sine/6),-8+0*math.cos(sine/6))*ANGLES(RAD(0+0*math.cos(sine/6)),RAD(0+0*math.sin(sine/6)),RAD(0+0*math.cos(sine/6))),.3)
 		end
 	end
 end)
