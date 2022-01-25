@@ -18,7 +18,7 @@ local Tab2 = Main:MakeTab("Reanimation")
 local Tab3 = Main:MakeTab("Scripts")
 local Tab4 = Main:MakeTab("Hat Scripts")
 local Tab5 = Main:MakeTab("Hat ID's")
-Tab1:Label("Current Version: 1.4")
+Tab1:Label("Current Version: 1.4.2")
 Tab1:Label("Created By: Gelatek")
 Tab1:Label("Special Thanks: Pare, TypicalUsername")
 Tab1:Button("Copy Discord Invite!", function()
@@ -230,10 +230,12 @@ Tab2:Button("Reanimate", function()
 	end
 	Humanoid.Died:Connect(function()
 	Dead = true
+	pcall(function()
 	Noclip:Disconnect()
 	Netless:Disconnect()
 	Test:Disconnect()
 	Reanimate:BreakJoints()
+	end)
 	workspace.Camera.CameraSubject = Humanoid
 	end)
 	
@@ -308,7 +310,9 @@ end)
 Tab4:Button("Mysterious Block", function()
 	ezloadstring("mysteriousblock")
 end)
-
+Tab4:Button("Dual Swords", function()
+	ezloadstring("dualswords")
+end)
 
 
 Tab5:Button("Copy Void Scythe Hats", function()
@@ -353,6 +357,10 @@ Tab5:Button("Copy Mysterious Block Hats", function()
 end)
 Tab5:Button("Copy Carnage Hats", function()
 	setclipboard("5410674378")
+	set()
+end)
+Tab5:Button("Copy Dual Swords Hats", function()
+	setclipboard("4820152700,4524991457")
 	set()
 end)
 
