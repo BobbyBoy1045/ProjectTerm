@@ -28,7 +28,7 @@ aadfs.Anchored = true
 end})
 local Player = Services.Players.LocalPlayer
 local Mouse = Player:GetMouse()
-local Character = Player.Character.TalentlessDumbass
+local Character = Player.Character.Rig
 local Human = Character:findFirstChild("Humanoid")
 	if Player.Character:FindFirstChild("BBBBB") then
 		Notification("You are already running a script! reset to change script!")
