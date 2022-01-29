@@ -619,7 +619,7 @@ function Library:Create(name)
 
 		Tab.Active = true
 
-
+		Tab.Visible = false
 		Tab.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 
 
