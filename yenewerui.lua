@@ -420,7 +420,7 @@ function Library:Create(name)
 
 				-- removed animations due to bugs.
 			script.Parent.Parent.Parent:Destroy()
-				wait(1)
+				wait(5)
 			sound:Destroy()
 
 
