@@ -407,8 +407,6 @@ function Library:Create(name)
 		script.Parent.MouseButton1Down:Connect(function()
 
 
-			script.Disabled = true
-
 
 			local sound = Instance.new("Sound", workspace.Camera)
 
@@ -419,132 +417,11 @@ function Library:Create(name)
 			sound:Play()
 
 
-			wait(0.5)
 
-
-			script.Parent:TweenPosition(
-
-
-				UDim2.new(-0.6, 0, 0, 0),
-
-
-				nil,
-
-
-				Enum.EasingStyle.Quint,
-
-
-				1
-
-
-			)
-
-
-
-			script.Parent.Parent.Text:TweenPosition(
-
-
-				UDim2.new(-0.4, 0, 0, 0),
-
-
-				nil,
-
-
-				Enum.EasingStyle.Quint,
-
-
-				1
-
-
-			)
-
-
-
-			script.Parent.Parent.SideBarOpener:TweenPosition(
-
-
-				UDim2.new(-0.6, 0, 0, 0),
-
-
-				nil,
-
-
-				Enum.EasingStyle.Quint,
-
-
-				1
-
-
-			)
-
-
-			script.Parent.Parent.SideBar:TweenPosition(
-
-
-				UDim2.new(-0.5, 0, 0, 0),
-
-
-				nil,
-
-
-				Enum.EasingStyle.Quint,
-
-
-				1
-
-
-			)
-
-
-			for i, v in pairs(tabs) do
-
-
-				v:TweenPosition(
-
-
-					UDim2.new(-2, 0, 0, 0),
-
-
-					nil,
-
-
-					Enum.EasingStyle.Quint,
-
-
-					1
-
-
-				)
-
-
-			end
-
-
-			wait(0.5)
-
-
-			for i = 0, 1, 0.1 do -- Starting at 0 transparency, ending at 1 transparency, adding 0.1 to the transparency
-
-
-				script.Parent.Parent.BackgroundTransparency = i
-
-
-				script.Parent.Parent.Shadow.ImageTransparency = i
-
-
-				wait(0.05)
-
-
-			end
-
-
-			wait(2)
-
-
-			sound:Destroy()
-
-
+				-- removed animations due to bugs.
 			script.Parent.Parent.Parent:Destroy()
+				wait(1)
+			sound:Destroy()
 
 
 		end)
