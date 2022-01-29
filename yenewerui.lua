@@ -43,7 +43,7 @@ function Library:Create(name)
 	GelatekUI2.Name = "GelatekUI2"
 
 
-	GelatekUI2.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+	GelatekUI2.Parent = game.CoreGui
 
 
 
